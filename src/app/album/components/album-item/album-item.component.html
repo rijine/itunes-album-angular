@@ -1,0 +1,30 @@
+<div class="widget-album-mobile" fxHide fxShow.xs="true">
+  <a href="" (click)="gotoDetails()">
+    <div class="img">
+      <img class="img-thumb" [src]="album.artworkUrl60" alt="">
+    </div>
+    <div class="heading clearfix">
+      <div class="collection">
+        {{album.collectionName}}
+      </div>
+      <div class="artist">
+        {{album.artistName}}
+      </div>
+    </div>
+  </a>
+</div>
+<div class="widget-album-desktop" fxShow.xs="false">
+  <a href="" (click)="gotoDetails()">
+    <div class="heading clearfix">
+      <div class="collection">
+        {{album.collectionName}}
+      </div>
+      <div class="artist">
+        {{album.artistName}}
+      </div>
+    </div>
+    <div class="img">
+      <img class="img-thumb" [src]="album.artworkUrl100" alt="">
+    </div>
+  </a>
+</div>

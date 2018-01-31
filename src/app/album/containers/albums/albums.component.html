@@ -1,0 +1,24 @@
+<div class="py-5 text-center">
+  <h1>Albums</h1>
+</div>
+<div class="toolbar-album">
+  <div class="album-search-box">
+    <input type="text" class="form-control" [(ngModel)]="search" (ngModelChange)="onSearchChange()" id="search" placeholder="Type your search">
+  </div>
+  <div class="btn-group" dropdown>
+    <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
+      {{ currentSortOrder.displayName}}
+      <span class="caret"></span>
+    </button>
+    <ul *dropdownMenu class="dropdown-menu" role="menu">
+      <li role="menuitem" *ngFor="let orderKey of displayOrder | keys" [hidden]="currentSortOrder.orderBy === orderKey">
+        <a class="dropdown-item" (click)="selectOrderBy(orderKey)">{{displayOrder[orderKey]}}</a>
+      </li>
+    </ul>
+  </div>
+  <button type="button" (click)="changeSortOrder()" class="btn btn-primary">
+    {{currentSortOrder.direction}}
+  </button>
+</div>
+
+<album-list [albums]="albums$ | async" (notify)="onViewDetails($event)"></album-list>

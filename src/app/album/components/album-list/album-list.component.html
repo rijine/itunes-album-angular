@@ -1,0 +1,8 @@
+<div class="container-fluid">
+  <div class="row">
+    <album-item *ngFor="let album of albums" [@listAnimate]
+      class="col-xs-12 col-sm-4 col-md-4 col-lg-3" [album]="album" (notify)="onViewDetails($event)">
+    </album-item>
+  </div>
+  <div class="widget-album-list-footer"></div>
+</div>

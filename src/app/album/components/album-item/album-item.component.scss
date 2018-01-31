@@ -1,0 +1,96 @@
+$widget-album-border-color: #ebebeb;
+$widget-album-link-color: #344644;
+$widget-album-subheading-color: #808383;
+@mixin text-album-heading {
+    display: block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+@mixin text-album-artist {
+    float: left;
+    font-size: 0.75em;
+    color: $widget-album-subheading-color;
+    @include text-album-heading;
+}
+
+@mixin text-album-collection {
+    font-size: 0.9em;
+    padding-bottom: 2px;
+    padding-right: 15px;
+    padding-top: 5px;
+    @include text-album-heading;
+}
+
+@mixin links-album {
+    display: block;
+    color: $widget-album-link-color;
+    position: relative;
+    /* box-shadow: 0px 0px 1px -1px; */
+    box-shadow: 0px 0px 17px -9px;
+}
+
+@mixin img-album {
+    display: block;
+    text-align: center;
+}
+
+.widget-album-desktop {
+    width: 215px;
+    >a {
+        width: 215px;
+        @include links-album;
+    }
+    .img {
+        @include img-album;
+    }
+    .img-thumb {
+        width: 99%;
+    }
+    .heading {
+        display: block;
+        margin-top: 15px;
+        width: 100%;
+        padding: 10px 0px 5px 10px;
+        > {
+            .collection {
+                @include text-album-collection;
+            }
+            .artist {
+                @include text-album-artist;
+            }
+        }
+    }
+}
+
+.widget-album-mobile {
+    border-bottom: 1px solid $widget-album-border-color;
+    margin-bottom: 1px;
+    >a {
+        width: 100%;
+        @include links-album;
+    }
+    .img {
+        float: left;
+        width: 72px;
+        height: auto;
+        @include img-album;
+    }
+    .img-thumb {
+        width: 100%;
+    }
+    .heading {
+        display: block;
+        margin-top: 12px;
+        margin-left: 78px;
+        > {
+            .collection {
+                @include text-album-collection;
+            }
+            .artist {
+                @include text-album-artist;
+            }
+        }
+    }
+}
