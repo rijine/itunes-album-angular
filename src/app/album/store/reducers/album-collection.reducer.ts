@@ -103,7 +103,7 @@ export function albumCollectionReducer(
         ...state,
         status: new Status({
           loading: false,
-          loaded: true
+          loaded: Object.keys(state.entities).length > 0
         }),
         details
       };
