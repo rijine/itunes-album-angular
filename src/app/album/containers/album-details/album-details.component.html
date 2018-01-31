@@ -7,9 +7,9 @@
 
 <div class="row">
   <div class="col-xs-12 col-md-6">
-    <album-image [album]="albumDetails$ | async"></album-image>
+    <album-image [album]="album$ | async"></album-image>
   </div>
   <div class="col-xs-12 col-md-6">
-    <track-list [tracks]="albumDetails$ | async"></track-list>
+    <track-list [tracks]="albumTracks$ | async"></track-list>
   </div>
 </div>

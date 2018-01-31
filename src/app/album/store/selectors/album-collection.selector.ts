@@ -87,8 +87,16 @@ export const getSelectedAlbumExists = createSelector(
 export const getSelectedAlbum = createSelector(
   getAlbumCollection,
   fromRoot.getRouterState,
+  (state, router): Album => {
+    return router.state && state.details[router.state.params.collectionId] && state.details[router.state.params.collectionId][0];
+  }
+);
+
+export const getSelectedAlbumTracks = createSelector(
+  getAlbumCollection,
+  fromRoot.getRouterState,
   (state, router): Album[] => {
-    return router.state && state.details[router.state.params.collectionId];
+    return router.state && state.details[router.state.params.collectionId] && state.details[router.state.params.collectionId].slice(1,-1);
   }
 );
 

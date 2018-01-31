@@ -1,4 +1,9 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  ChangeDetectionStrategy
+} from '@angular/core';
 
 @Component({
   selector: 'album-image',
@@ -8,14 +13,7 @@ import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core
 })
 export class AlbumImageComponent implements OnInit {
   @Input() album;
-  constructor() {
-  }
+  constructor() {}
 
-  /* public get albumView() {
-    return this.album.map(albums => Array.isArray(albums)? albums[0]: null);
-  } */
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

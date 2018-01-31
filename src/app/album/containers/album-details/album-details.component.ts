@@ -15,11 +15,13 @@ import { Album } from '../../models';
   styleUrls: ['./album-details.component.scss']
 })
 export class AlbumDetailsComponent implements OnInit {
-  albumDetails$: Observable<Album[]>;
+  album$: Observable<Album>;
+  albumTracks$: Observable<Album[]>;
   constructor(private store: Store<albumStore.AlbumFeatureState>) {}
 
   ngOnInit() {
-    this.albumDetails$ = this.store.select(albumSelector.getSelectedAlbum);
+    this.album$ = this.store.select(albumSelector.getSelectedAlbum);
+    this.albumTracks$ = this.store.select(albumSelector.getSelectedAlbumTracks);
   }
 
   gotoAlbums() {

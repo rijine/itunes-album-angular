@@ -1,4 +1,9 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  ChangeDetectionStrategy
+} from '@angular/core';
 
 @Component({
   selector: 'track-item',
@@ -8,9 +13,8 @@ import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core
 })
 export class TrackItemComponent implements OnInit {
   @Input() track;
-  constructor() { }
 
-  ngOnInit() {
-  }
+  constructor() {}
+  ngOnInit() {}
 
 }
