@@ -4,6 +4,11 @@
  - npm install
  - ng serve
 
+### Browsers
+    - Tested on Chrome 60.x.x
+    - Tested on Firefox latest
+
+
 ### Libraries & Features
 1. Angular 5 with Angular CLI 1.6
    - latest version availble now.
