@@ -1,20 +1,29 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 import { AlbumRoutingModule } from './album-routing.module';
-import { AlbumItemComponent, AlbumListComponent } from './components';
+import { SharedModule } from '../shared/shared.module';
+
+import {
+  AlbumItemComponent,
+  AlbumListComponent,
+  TrackListComponent,
+  TrackItemComponent,
+  AlbumImageComponent
+} from './components';
 import { AlbumsComponent, AlbumDetailsComponent } from './containers';
 import { AlbumService } from './services';
 import { albumEffects, albumReducers } from './store';
 import * as fromGuards from './guards';
-import { SharedModule } from '../shared/shared.module';
+
+import { TrackTimePipe } from './pipes';
 
 @NgModule({
   imports: [
@@ -31,7 +40,11 @@ import { SharedModule } from '../shared/shared.module';
     AlbumListComponent,
     AlbumItemComponent,
     AlbumsComponent,
-    AlbumDetailsComponent
+    AlbumDetailsComponent,
+    TrackListComponent,
+    TrackItemComponent,
+    TrackTimePipe,
+    AlbumImageComponent
   ],
   providers: [fromGuards.guards, AlbumService]
 })
