@@ -97,7 +97,7 @@ describe('Album Collection Actions', () => {
 
     describe('LoadSingleAlbumsSuccess', () => {
       it('should create an action', () => {
-        const payload: Album = {
+        const payload: Album[] = [{
           wrapperType: 'collection',
           collectionType: 'Album',
           artistId: 136975,
@@ -123,7 +123,7 @@ describe('Album Collection Actions', () => {
           currency: 'USD',
           releaseDate: '2009-09-09T07:00:00Z',
           primaryGenreName: 'Rock'
-        };
+        }];
 
         const action = new fromAlbumCollection.LoadSingleAlbumSuccess(payload);
 

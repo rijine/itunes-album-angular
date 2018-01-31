@@ -9,7 +9,7 @@ import * as fromAlbumCollectionReducer from '../reducers';
 import * as fromAlbumCollectionAction from '../actions';
 import * as fromAlbumCollectionSelector from '../selectors';
 
-describe('Albums Collection Selectors', () => {
+describe('Albums Collection Selectors >', () => {
   let store: Store<fromAlbumCollectionReducer.AlbumFeatureState>;
 
   const album1: Album = {
@@ -199,7 +199,7 @@ describe('Albums Collection Selectors', () => {
     });
   });
 
-  describe('getAlbumsLoading', () => {
+  describe('getAlbumsLoading > ', () => {
     it('should return the albums loading state', () => {
       let result;
 
