@@ -40,7 +40,7 @@ export class AlbumEffects {
           .getAlbum(payload)
           .pipe(
             map(
-              (album: Album) => new albumActions.LoadSingleAlbumSuccess(album)
+              (albums: Album[]) => new albumActions.LoadSingleAlbumSuccess(albums)
             ),
             catchError(error => of(new albumActions.LoadSingleAlbumFail(error)))
           );

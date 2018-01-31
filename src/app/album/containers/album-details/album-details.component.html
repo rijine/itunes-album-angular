@@ -1,8 +1,10 @@
-<div>
-  albums details works!
+<div class="py-3 text-center">
+  <h2>Albums Details</h2>
 </div>
-<a routerLink="/albums">Back</a>
-<div>
-  {{album$ | async | json}}
+<div class="toolbar-album-details clearfix">
+  <a class="btn btn-primary float-right" routerLink="/albums">Back</a>
 </div>
 
+<div>
+  {{albumDetails$ | async | json}}
+</div>

@@ -11,8 +11,8 @@ import { mergeMap } from 'rxjs/operators/mergeMap';
 export class AlbumService {
   readonly callbackParam = '&callback=JSONP_CALLBACK';
   readonly url = `https://itunes.apple.com/search?term=Beatles&entity=album${this.callbackParam}`;
-  readonly lookupUrl = `https://itunes.apple.com/lookup?id=`;
-  readonly trackUrl = 'https://itunes.apple.com/lookup?id=1053882093&entity=song';
+  readonly lookupUrl = `https://itunes.apple.com/lookup?id=`; //Not using
+  readonly trackUrl = 'https://itunes.apple.com/lookup?entity=song&id=';
 
   constructor(private http: HttpClient) {
   }
@@ -25,11 +25,10 @@ export class AlbumService {
       );
   }
 
-  getAlbum(collectionId: number): Observable<Album> {
-    return this.http.jsonp<AlbumsResponse>(this.lookupUrl + collectionId + this.callbackParam , 'JSONP_CALLBACK')
+  getAlbum(collectionId: number): Observable<Album[]> {
+    return this.http.jsonp<AlbumsResponse>(this.trackUrl + collectionId + this.callbackParam , 'JSONP_CALLBACK')
       .pipe(
-        mergeMap((res: AlbumsResponse) => res.results),
-        first(),
+        map((res: AlbumsResponse) => res.results),
         catchError(error => of(null))
       );
   }

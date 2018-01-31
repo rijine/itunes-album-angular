@@ -3,6 +3,7 @@ import { Album, Status, OrderBy, FilterBy } from '../../models';
 
 export interface AlbumCollectionState {
   entities: { [id: number]: Album };
+  details: {[id: number]: Album[]};
   status: Status;
   orderBy: OrderBy;
   filterBy: FilterBy;
@@ -11,6 +12,7 @@ export interface AlbumCollectionState {
 
 export const initialState: AlbumCollectionState = {
   entities: {},
+  details: {},
   status: new Status({ loading: false, loaded: false }),
   orderBy: new OrderBy({ orderBy: 'collectionName', displayName: 'Album' }),
   filterBy: new FilterBy({filterOn: 'collectionName'}),
@@ -64,6 +66,8 @@ export function albumCollectionReducer(
         })
       };
     }
+
+    /* Details */
     case albumAction.AlbumCollectionActionTypes.LoadSingleAlbum: {
       const data = action.payload;
       return {
@@ -87,15 +91,21 @@ export function albumCollectionReducer(
     }
 
     case albumAction.AlbumCollectionActionTypes.LoadSingleAlbumSuccess: {
-      const album: Album = action.payload;
-      const entities = { ...state.entities, [album.collectionId]: album };
+      const albums: Album[] = action.payload;
+      let details;
+      if(albums.length > 0){
+        details = { ...state.details, [albums[0].collectionId]: albums };
+      } else {
+        details = state.details;
+      }
+
       return {
         ...state,
         status: new Status({
           loading: false,
           loaded: true
         }),
-        entities
+        details
       };
     }
 

@@ -5,9 +5,11 @@ export enum AlbumCollectionActionTypes {
   LoadAlbums = '[Album] Load albums',
   LoadAlbumsFail = '[Album] Load albums failed',
   LoadAlbumsSuccess = '[Album] Load albums success',
+
   LoadSingleAlbum = '[Album] Load single album',
   LoadSingleAlbumFail = '[Album] Load single album failed',
   LoadSingleAlbumSuccess = '[Album] Load single album success',
+
   UpdateAlbumsSortOrder = '[Album] Sort order Update',
   UpdateAlbumsFilter = '[Album] Filter Update',
   CounterUpdate = '[Album] Counter Update'
@@ -41,7 +43,7 @@ export class LoadSingleAlbumFail implements Action {
 
 export class LoadSingleAlbumSuccess implements Action {
   readonly type = AlbumCollectionActionTypes.LoadSingleAlbumSuccess;
-  constructor(public payload: Album) {}
+  constructor(public payload: Album[]) {}
 }
 
 //Sorting

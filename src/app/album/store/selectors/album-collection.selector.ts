@@ -76,11 +76,19 @@ export const getAlbumsByFilterAndSort = createSelector(
   }
 );
 
-export const getSelectedAlbum = createSelector(
-  getAlbumEntities,
+export const getSelectedAlbumExists = createSelector(
+  getAlbumCollection,
   fromRoot.getRouterState,
-  (entities, router): Album => {
-    return router.state && entities[router.state.params.collectionId];
+  (state, router): boolean => {
+    return router.state && state.details && !!state.details[router.state.params.collectionId];
+  }
+);
+
+export const getSelectedAlbum = createSelector(
+  getAlbumCollection,
+  fromRoot.getRouterState,
+  (state, router): Album[] => {
+    return router.state && state.details[router.state.params.collectionId];
   }
 );
 
