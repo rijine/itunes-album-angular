@@ -4,15 +4,15 @@ import {
   Input,
   ChangeDetectionStrategy
 } from '@angular/core';
+import { Album } from '../../models/index';
 
 @Component({
   selector: 'album-image',
   templateUrl: './album-image.component.html',
-  styleUrls: ['./album-image.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./album-image.component.scss']
 })
 export class AlbumImageComponent implements OnInit {
-  @Input() album;
+  @Input() album: Album;
   constructor() {}
 
   ngOnInit() {}
