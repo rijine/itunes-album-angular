@@ -1,12 +1,12 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
-import * as fromAlbumStore from '../reducers';
+import { getAlbumStore } from '../reducers';
 import * as fromRoot from '../../../store';
 import { Album } from '../../models';
 import { Observable } from 'rxjs/Observable';
-import { AlbumCollectionState } from '../states';
+/* import { AlbumCollectionState } from '../states';
 import { getAlbumStore } from '../states';
-
+ */
 
 export const getAlbumCollection = createSelector(
   getAlbumStore,

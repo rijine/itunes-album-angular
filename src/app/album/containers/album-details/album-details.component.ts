@@ -9,7 +9,6 @@ import * as albumSelector from '../../store/selectors';
 
 import { AlbumService } from '../../services';
 import { Album } from '../../models';
-import { AlbumFeatureState } from '../../store/states/album.feature.state';
 
 @Component({
   selector: 'app-album-details',
@@ -19,7 +18,7 @@ import { AlbumFeatureState } from '../../store/states/album.feature.state';
 export class AlbumDetailsComponent implements OnInit {
   album$: Observable<Album>;
   albumTracks$: Observable<Album[]>;
-  constructor(private store: Store<AlbumFeatureState>) {}
+  constructor(private store: Store<albumStore.AlbumModuleState>) {}
 
   ngOnInit() {
     this.album$ = this.store.select(albumSelector.getSelectedAlbum);

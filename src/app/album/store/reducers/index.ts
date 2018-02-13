@@ -1,14 +1,17 @@
-import { ActionReducerMap } from '@ngrx/store';
+import { createFeatureSelector, ActionReducerMap } from '@ngrx/store';
 import {
-  albumCollectionReducer
+  albumCollectionReducer, AlbumCollectionState
 } from './album-collection.reducer';
-import { AlbumFeatureState } from '../states/album.feature.state';
 
 
-export const albumReducers: ActionReducerMap<AlbumFeatureState> = {
+export interface AlbumModuleState {
+  albumCollection: AlbumCollectionState;
+}
+
+export const albumReducers: ActionReducerMap<AlbumModuleState> = {
   albumCollection: albumCollectionReducer
 };
 
-//export const getAlbumStore = createFeatureSelector<AlbumFeatureState>('album');
+export const getAlbumStore = createFeatureSelector<AlbumModuleState>('album');
 
 export * from './album-collection.reducer';

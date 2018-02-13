@@ -9,7 +9,6 @@ import * as fromRoot from '../../../store';
 
 import { AlbumService } from '../../services';
 import { Album, OrderBy, FilterBy } from '../../models';
-import { AlbumFeatureState } from '../../store/states';
 
 @Component({
   selector: 'albums',
@@ -25,7 +24,7 @@ export class AlbumsComponent implements OnInit {
   };
   currentSortOrder: OrderBy;
   search = '';
-  constructor(private store: Store<AlbumFeatureState>, private appStore: Store<fromRoot.ApplicationState>) {}
+  constructor(private store: Store<albumStore.AlbumModuleState>, private appStore: Store<fromRoot.ApplicationState>) {}
 
   ngOnInit() {
     this.albums$ = this.store.select(albumSelector.getAlbumsByFilterAndSort);
