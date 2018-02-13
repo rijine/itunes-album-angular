@@ -9,14 +9,15 @@ import { Store } from '@ngrx/store';
 import * as fromStore from '../store';
 
 import { Status } from '../models';
+import { AlbumFeatureState } from '../store/states';
 
 @Injectable()
 export class AlbumsGuard implements CanActivate {
-  constructor(private store: Store<fromStore.AlbumFeatureState>) {}
+  constructor(private store: Store<AlbumFeatureState>) {}
   canActivate(): Observable<boolean> {
     return this.checkStore().pipe(
       switchMap(() => of(true)),
-      catchError(() => of(false))
+      catchError((error) => of(false))
     );
   }
 

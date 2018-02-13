@@ -1,14 +1,6 @@
 import * as albumAction from '../actions/album-collection.action';
 import { Album, Status, OrderBy, FilterBy } from '../../models';
-
-export interface AlbumCollectionState {
-  entities: { [id: number]: Album };
-  details: {[id: number]: Album[]};
-  status: Status;
-  orderBy: OrderBy;
-  filterBy: FilterBy;
-  count: number;
-}
+import { AlbumCollectionState } from '../states';
 
 export const initialState: AlbumCollectionState = {
   entities: {},

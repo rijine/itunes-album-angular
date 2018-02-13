@@ -12,10 +12,11 @@ import { Store } from '@ngrx/store';
 
 import * as fromStore from '../store';
 import { Album } from '../models';
+import { AlbumFeatureState } from '../store/states';
 
 @Injectable()
 export class AlbumExistsGuard implements CanActivate {
-  constructor(private store: Store<fromStore.AlbumFeatureState>) {}
+  constructor(private store: Store<AlbumFeatureState>) {}
 
   canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {
 
