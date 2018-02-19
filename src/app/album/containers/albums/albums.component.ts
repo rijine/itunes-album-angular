@@ -28,7 +28,7 @@ export class AlbumsComponent implements OnInit {
   constructor(private store: Store<AlbumsState>, private appStore: Store<fromRoot.ApplicationState>) {}
 
   ngOnInit() {
-    this.albums$ = this.store.select(albumSelector.selectAllAlbums);
+    this.albums$ = this.store.select(albumSelector.getAlbumsByFilterAndSort);
     /* this.albums$.subscribe(
       (x) => console.log(x)
     ); */

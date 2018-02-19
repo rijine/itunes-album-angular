@@ -5,7 +5,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
   selector: 'album-list',
   templateUrl: './album-list.component.html',
   styleUrls: ['./album-list.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  //changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     trigger('listAnimate', [
       transition('void => *', [
