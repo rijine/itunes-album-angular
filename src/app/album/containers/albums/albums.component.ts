@@ -4,8 +4,8 @@ import { Observable } from 'rxjs/Observable';
 
 //import * as albumStore from '../../store';
 //import * as albumAction from '../../store/actions';
-import { AlbumsState, selectAllAlbums} from '../../store/reducers/album.reducer';
-//import * as albumSelector from '../../store/selectors';
+import { AlbumsState } from '../../store/reducers/album.reducer';
+import * as albumSelector from '../../store/selectors';
 import * as fromRoot from '../../../store';
 
 import { AlbumService } from '../../services';
@@ -28,7 +28,7 @@ export class AlbumsComponent implements OnInit {
   constructor(private store: Store<AlbumsState>, private appStore: Store<fromRoot.ApplicationState>) {}
 
   ngOnInit() {
-    this.albums$ = this.store.select(selectAllAlbums);
+    this.albums$ = this.store.select(albumSelector.selectAllAlbums);
     /* this.albums$.subscribe(
       (x) => console.log(x)
     ); */

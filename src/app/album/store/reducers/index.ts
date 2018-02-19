@@ -15,10 +15,12 @@ export const albumReducers: ActionReducerMap<AlbumModuleState> = {
   albums: albumsReducer.reducer
 };
 
-//export const getAlbumStore = createFeatureSelector<AlbumModuleState>('album');
+export const getAlbumStore = createFeatureSelector<AlbumModuleState>('album');
 /* export const selectAlbumsState = createSelector(
   getAlbumStore,
   (state) => state.albums
 ); */
 //export * from './album-collection.reducer';
+
+
 export * from './album.reducer';

@@ -1,8 +1,9 @@
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
-import { createFeatureSelector } from '@ngrx/store';
+import { createSelector } from '@ngrx/store';
 
 import { Album } from '../../models/album';
 import { AlbumActions, AlbumActionTypes } from '../actions/album.actions';
+//import { getAlbumStore } from '../reducers';
 
 export interface AlbumsState extends EntityState<Album> {
   // additional entities state properties
@@ -23,8 +24,6 @@ export const initialAlbumsState: AlbumsState = adapter.getInitialState({
   loaded: false,
   error: false
 });
-
-export const selectAlbumsState = createFeatureSelector<AlbumsState>('albums')
 
 export function reducer(
   state = initialAlbumsState,
@@ -91,9 +90,10 @@ export function reducer(
   }
 }
 
+/* export const selectAlbumsState = createSelector(getAlbumStore, state => state.albums);
 export const {
   selectIds,
   selectEntities,
   selectAll: selectAllAlbums,
   selectTotal
-} = adapter.getSelectors(selectAlbumsState);
+} = adapter.getSelectors(selectAlbumsState); */

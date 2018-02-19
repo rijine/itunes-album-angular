@@ -1,15 +1,28 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 import { Album } from '../../models';
-import { selectAlbumsState } from '../reducers';
-//import * as fromAlbumsReducer from '../reducers'
+import { getAlbumStore } from '../reducers';
+import * as albumsReducer from '../reducers/album.reducer';
 
-//export const selectAlbumsState = createFeatureSelector<fromAlbumsReducer.State>('albums');
+//import * as fromAlbumsReducer from '../reducers'
 
 /* export const selectAlbumsLoaded = createSelector(
   getAlbumStore,
   state => state.albums.loaded
 ); */
+
+/* export const selectAlbumsLoaded = createSelector(
+  selectAlbumsState,
+  state => state.loaded
+); */
+
+export const selectAlbumsState = createSelector(getAlbumStore, state => state.albums);
+export const {
+  selectIds,
+  selectEntities,
+  selectAll: selectAllAlbums,
+  selectTotal
+} = albumsReducer.adapter.getSelectors(selectAlbumsState);
 
 export const selectAlbumsLoaded = createSelector(
   selectAlbumsState,
