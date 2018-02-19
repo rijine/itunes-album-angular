@@ -3,13 +3,15 @@ import { createSelector } from '@ngrx/store';
 
 import { Album } from '../../models/album';
 import { AlbumActions, AlbumActionTypes } from '../actions/album.actions';
+import { Status, OrderBy, FilterBy } from '../../models';
 //import { getAlbumStore } from '../reducers';
 
 export interface AlbumsState extends EntityState<Album> {
   // additional entities state properties
   selectedAlbumId: string | null;
-  loading: boolean;
-  loaded: boolean;
+  status: Status;
+  orderBy: OrderBy;
+  filterBy: FilterBy;
   error: boolean;
 }
 
@@ -20,8 +22,9 @@ export const adapter: EntityAdapter<Album> = createEntityAdapter<Album>({
 export const initialAlbumsState: AlbumsState = adapter.getInitialState({
   // additional entity state properties
   selectedAlbumId: null,
-  loading: false,
-  loaded: false,
+  status: new Status({ loading: false, loaded: false }),
+  orderBy: new OrderBy({ orderBy: 'collectionName', displayName: 'Album' }),
+  filterBy: new FilterBy({ filterOn: 'collectionName' }),
   error: false
 });
 
@@ -65,19 +68,48 @@ export function reducer(
     case AlbumActionTypes.LoadAlbums: {
       return {
         ...state,
-        loading: true
+        status: new Status({
+          loading: true,
+          loaded: false
+        })
       };
     }
 
     case AlbumActionTypes.LoadAlbumsSuccess: {
-      return adapter.addAll(action.payload.albums, {...state, loaded: true, loading: false});
+      return adapter.addAll(action.payload.albums, {
+        ...state,
+        status: new Status({
+          loading: false,
+          loaded: true
+        })
+      });
     }
 
     case AlbumActionTypes.LoadAlbumsFail: {
       return {
         ...state,
+        status: new Status({
+          loading: false,
+          loaded: false
+        }),
         error: true
       };
+    }
+
+    case AlbumActionTypes.UpdateAlbumsSortOrder: {
+      const orderBy: OrderBy = action.payload.orderBy;
+      return {
+        ...state,
+        orderBy
+      }
+    }
+
+    case AlbumActionTypes.UpdateAlbumsFilter: {
+      const filterBy: FilterBy = action.payload.filterBy;
+      return {
+        ...state,
+        filterBy
+      }
     }
 
     case AlbumActionTypes.ClearAlbums: {

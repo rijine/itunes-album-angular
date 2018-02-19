@@ -16,7 +16,10 @@ import * as albumsReducer from '../reducers/album.reducer';
   state => state.loaded
 ); */
 
-export const selectAlbumsState = createSelector(getAlbumStore, state => state.albums);
+export const selectAlbumsState = createSelector(
+  getAlbumStore,
+  state => state.albums
+);
 export const {
   selectIds,
   selectEntities,
@@ -26,5 +29,15 @@ export const {
 
 export const selectAlbumsLoaded = createSelector(
   selectAlbumsState,
-  state => state.loaded
+  state => state.status.loaded
+);
+
+export const getSortParameters = createSelector(
+  selectAlbumsState,
+  state => state.orderBy
+);
+
+export const getFilterParameters = createSelector(
+  selectAlbumsState,
+  state => state.filterBy
 );

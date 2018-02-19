@@ -1,11 +1,14 @@
 import { Action } from '@ngrx/store';
 import { Update } from '@ngrx/entity';
 import { Album } from '../../models/album';
+import { OrderBy, FilterBy } from '../../models';
 
 export enum AlbumActionTypes {
   LoadAlbums = '[Album] Load Albums',
   LoadAlbumsSuccess = '[Album] Load Albums Success',
   LoadAlbumsFail = '[Album] Load Albums Fail',
+  UpdateAlbumsSortOrder = '[Album] Update Albums SortOrder',
+  UpdateAlbumsFilter = '[Album] Update Albums Filter ',
   AddAlbum = '[Album] Add Album',
   UpsertAlbum = '[Album] Upsert Album',
   AddAlbums = '[Album] Add Albums',
@@ -32,6 +35,18 @@ export class LoadAlbumsFail implements Action {
   readonly type = AlbumActionTypes.LoadAlbumsFail;
 
   constructor(public payload: { error: any }) {}
+}
+
+export class UpdateAlbumsSortOrder implements Action {
+  readonly type = AlbumActionTypes.UpdateAlbumsSortOrder;
+
+  constructor(public payload: { orderBy: OrderBy }) {}
+}
+
+export class UpdateAlbumsFilter implements Action {
+  readonly type = AlbumActionTypes.UpdateAlbumsFilter;
+
+  constructor(public payload: { filterBy: FilterBy }) {}
 }
 
 export class AddAlbum implements Action {
@@ -87,15 +102,17 @@ export class ClearAlbums implements Action {
 }
 
 export type AlbumActions =
- LoadAlbums
- | LoadAlbumsSuccess
- | LoadAlbumsFail
- | AddAlbum
- | UpsertAlbum
- | AddAlbums
- | UpsertAlbums
- | UpdateAlbum
- | UpdateAlbums
- | DeleteAlbum
- | DeleteAlbums
- | ClearAlbums;
+  | LoadAlbums
+  | LoadAlbumsSuccess
+  | LoadAlbumsFail
+  | UpdateAlbumsFilter
+  | UpdateAlbumsSortOrder
+  | AddAlbum
+  | UpsertAlbum
+  | AddAlbums
+  | UpsertAlbums
+  | UpdateAlbum
+  | UpdateAlbums
+  | DeleteAlbum
+  | DeleteAlbums
+  | ClearAlbums;

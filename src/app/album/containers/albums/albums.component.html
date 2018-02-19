@@ -10,15 +10,15 @@
       {{ currentSortOrder?.displayName}}
       <span class="caret"></span>
     </button>
-    <!-- <ul *dropdownMenu class="dropdown-menu" role="menu">
+    <ul *dropdownMenu class="dropdown-menu" role="menu">
       <li role="menuitem" *ngFor="let orderKey of displayOrder | keys" [hidden]="currentSortOrder.orderBy === orderKey">
         <a class="dropdown-item" (click)="selectOrderBy(orderKey)">{{displayOrder[orderKey]}}</a>
       </li>
-    </ul> -->
+    </ul>
   </div>
-  <!-- <button type="button" (click)="changeSortOrder()" class="btn btn-primary">
+  <button type="button" (click)="changeSortOrder()" class="btn btn-primary">
     {{currentSortOrder.direction}}
-  </button> -->
+  </button>
 </div>
 
 <album-list [albums]="albums$ | async" (notify)="onViewDetails($event)"></album-list>
