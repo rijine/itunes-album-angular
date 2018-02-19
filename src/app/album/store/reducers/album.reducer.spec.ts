@@ -1,13 +1,13 @@
-import { reducer, initialState } from '../reducers/album.reducer';
+import { reducer, initialAlbumsState } from '../reducers/album.reducer';
 
 describe('Album Reducer', () => {
   describe('unknown action', () => {
     it('should return the initial state', () => {
       const action = {} as any;
 
-      const result = reducer(initialState, action);
+      const result = reducer(initialAlbumsState, action);
 
-      expect(result).toBe(initialState);
+      expect(result).toBe(initialAlbumsState);
     });
   });
 });
