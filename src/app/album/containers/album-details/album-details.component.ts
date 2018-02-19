@@ -21,8 +21,8 @@ export class AlbumDetailsComponent implements OnInit {
   constructor(private store: Store<albumStore.AlbumModuleState>) {}
 
   ngOnInit() {
-    this.album$ = this.store.select(albumSelector.getSelectedAlbum);
-    this.albumTracks$ = this.store.select(albumSelector.getSelectedAlbumTracks);
+    //this.album$ = this.store.select(albumSelector.getSelectedAlbum);
+    //this.albumTracks$ = this.store.select(albumSelector.getSelectedAlbumTracks);
   }
 
   gotoAlbums() {

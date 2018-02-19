@@ -10,7 +10,7 @@ export interface AlbumCollectionState {
   count: number;
 }
 
-export const initialState: AlbumCollectionState = {
+const initialState: AlbumCollectionState = {
   entities: {},
   details: {},
   status: new Status({ loading: false, loaded: false }),

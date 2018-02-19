@@ -2,9 +2,10 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
-import * as albumStore from '../../store';
-import * as albumAction from '../../store/actions';
-import * as albumSelector from '../../store/selectors';
+//import * as albumStore from '../../store';
+//import * as albumAction from '../../store/actions';
+import { AlbumsState, selectAllAlbums} from '../../store/reducers/album.reducer';
+//import * as albumSelector from '../../store/selectors';
 import * as fromRoot from '../../../store';
 
 import { AlbumService } from '../../services';
@@ -24,16 +25,18 @@ export class AlbumsComponent implements OnInit {
   };
   currentSortOrder: OrderBy;
   search = '';
-  constructor(private store: Store<albumStore.AlbumModuleState>, private appStore: Store<fromRoot.ApplicationState>) {}
+  constructor(private store: Store<AlbumsState>, private appStore: Store<fromRoot.ApplicationState>) {}
 
   ngOnInit() {
-    this.albums$ = this.store.select(albumSelector.getAlbumsByFilterAndSort);
-    //.subscribe((x) => console.log(x));
-    this.sortOrder$ = this.store.select(albumSelector.getSortParameters);
+    this.albums$ = this.store.select(selectAllAlbums);
+    /* this.albums$.subscribe(
+      (x) => console.log(x)
+    ); */
+    //this.sortOrder$ = this.store.select(albumSelector.getSortParameters);
 
-    this.sortOrder$.subscribe(state => {
+    /* this.sortOrder$.subscribe(state => {
       this.currentSortOrder = state;
-    });
+    }); */
   }
 
   onViewDetails($event) {
@@ -41,27 +44,27 @@ export class AlbumsComponent implements OnInit {
   }
 
   selectOrderBy(order) {
-    const sortData: OrderBy = Object.assign({}, this.currentSortOrder);
+    /* const sortData: OrderBy = Object.assign({}, this.currentSortOrder);
     sortData.displayName = this.displayOrder[order];
     sortData.orderBy = order;
 
-    this.store.dispatch(new albumAction.UpdateAlbumsSortOrder(sortData));
+    //this.store.dispatch(new albumAction.UpdateAlbumsSortOrder(sortData));
     this.onSearchChange();
-    return false;
+    return false; */
   }
 
   changeSortOrder() {
-    const sortData: OrderBy = Object.assign({}, this.currentSortOrder);
+    /* const sortData: OrderBy = Object.assign({}, this.currentSortOrder);
     sortData.direction = sortData.direction === 'ASC' ? 'DESC' : 'ASC';
     this.store.dispatch(new albumAction.UpdateAlbumsSortOrder(sortData));
-    this.onSearchChange();
+    this.onSearchChange(); */
   }
 
   onSearchChange() {
-    const filter = new FilterBy({
+    /* const filter = new FilterBy({
       filter: this.search,
       filterOn: 'collectionName'
-    });
-    this.store.dispatch(new albumAction.UpdateAlbumsFilter(filter));
+    }); */
+    //this.store.dispatch(new albumAction.UpdateAlbumsFilter(filter));
   }
 }
