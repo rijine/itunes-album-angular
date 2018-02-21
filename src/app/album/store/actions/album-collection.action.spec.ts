@@ -1,4 +1,4 @@
-import * as fromAlbumCollection from './album-collection.action';
+/* import * as fromAlbumCollection from './album-collection.action';
 import { Album } from '../../models';
 
 describe('Album Collection Actions', () => {
@@ -137,3 +137,4 @@ describe('Album Collection Actions', () => {
     });
   });
 });
+ */

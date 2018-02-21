@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { AlbumsEffects } from './albums.effects';
 
-describe('AlbumsService', () => {
+describe('AlbumsEffects', () => {
   let actions$: Observable<any>;
   let effects: AlbumsEffects;
 

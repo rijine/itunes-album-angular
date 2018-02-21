@@ -1,4 +1,4 @@
-import { StoreModule, Store, combineReducers } from '@ngrx/store';
+/* import { StoreModule, Store, combineReducers } from '@ngrx/store';
 import { ROUTER_NAVIGATION } from '@ngrx/router-store';
 
 import { TestBed } from '@angular/core/testing';
@@ -215,3 +215,4 @@ describe('Albums Collection Selectors >', () => {
     });
   });
 });
+ */

@@ -1,4 +1,4 @@
-import * as fromAlbumCollectionReducer from './album-collection.reducer';
+/* import * as fromAlbumCollectionReducer from './album-collection.reducer';
 import * as fromAlbumCollectionAction from '../actions/album-collection.action';
 import { Album } from '../../models';
 
@@ -104,3 +104,4 @@ describe('AlbumCollectionReducer', () => {
     });
   });
 });
+ */
