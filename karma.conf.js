@@ -22,12 +22,18 @@ module.exports = function (config) {
     angularCli: {
       environment: 'dev'
     },
+    customLaunchers: {
+      ChromeDebugging: {
+        base: 'Chrome',
+        flags: [ '--remote-debugging-port=9333' ]
+      }
+    },
     reporters: ['progress', 'kjhtml'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Chrome'],
+    browsers: ['ChromeDebugging'],
     singleRun: false
   });
 };

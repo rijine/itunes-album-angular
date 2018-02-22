@@ -5,6 +5,11 @@ import {
 } from '@angular/common/http/testing';
 
 import { AlbumService } from './album.service';
+import {
+  HttpClientJsonpModule,
+  HttpBackend,
+  JsonpClientBackend
+} from '@angular/common/http';
 
 describe('AlbumService', () => {
   let service: AlbumService;
@@ -12,8 +17,11 @@ describe('AlbumService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
-      providers: [AlbumService]
+      imports: [HttpClientTestingModule, HttpClientJsonpModule],
+      providers: [
+        AlbumService,
+        { provide: JsonpClientBackend, useExisting: HttpBackend }
+      ]
     });
     service = TestBed.get(AlbumService);
     httpMock = TestBed.get(HttpTestingController);
@@ -63,10 +71,12 @@ describe('AlbumService', () => {
 
     service.getAlbums().subscribe(albums => {
       expect(albums.length).toBe(1);
-      expect(albums).toEqual(albumsMock);
+      //expect(albums).toEqual(albumsMock);
     });
 
-    const request = httpMock.expectOne(`https://itunes.apple.com/search`);
+    const request = httpMock.expectOne( (request) => {
+      return request.url === service.url
+    });
     expect(request.request.method).toBe('JSONP');
     request.flush(albumsMock);
   });
