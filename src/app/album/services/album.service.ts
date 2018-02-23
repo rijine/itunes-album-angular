@@ -26,11 +26,15 @@ export class AlbumService {
   }
 
   getAlbum(collectionId: number): Observable<Album[]> {
-    return this.http.jsonp<AlbumsResponse>(this.trackUrl + collectionId + this.callbackParam , 'JSONP_CALLBACK')
+    return this.http.jsonp<AlbumsResponse>( this.getTrackUrl(collectionId) , 'JSONP_CALLBACK')
       .pipe(
         map((res: AlbumsResponse) => res.results),
         catchError(error => of(null))
       );
+  }
+
+  getTrackUrl(collectionId: number): string {
+    return this.trackUrl + collectionId + this.callbackParam;
   }
 
 }
