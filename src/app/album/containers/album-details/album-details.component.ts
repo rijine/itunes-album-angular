@@ -9,6 +9,7 @@ import * as albumSelector from '../../store/selectors';
 
 import { AlbumService } from '../../services';
 import { Album } from '../../models';
+
 @Component({
   selector: 'app-album-details',
   templateUrl: './album-details.component.html',
@@ -17,11 +18,11 @@ import { Album } from '../../models';
 export class AlbumDetailsComponent implements OnInit {
   album$: Observable<Album>;
   albumTracks$: Observable<Album[]>;
-  constructor(private store: Store<albumStore.AlbumFeatureState>) {}
+  constructor(private store: Store<albumStore.AlbumModuleState>) {}
 
   ngOnInit() {
-    this.album$ = this.store.select(albumSelector.getSelectedAlbum);
-    this.albumTracks$ = this.store.select(albumSelector.getSelectedAlbumTracks);
+    //this.album$ = this.store.select(albumSelector.getSelectedAlbum);
+    //this.albumTracks$ = this.store.select(albumSelector.getSelectedAlbumTracks);
   }
 
   gotoAlbums() {

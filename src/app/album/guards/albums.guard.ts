@@ -12,16 +12,27 @@ import { Status } from '../models';
 
 @Injectable()
 export class AlbumsGuard implements CanActivate {
-  constructor(private store: Store<fromStore.AlbumFeatureState>) {}
+  constructor(private store: Store<fromStore.AlbumsState>) {}
   canActivate(): Observable<boolean> {
     return this.checkStore().pipe(
       switchMap(() => of(true)),
-      catchError(() => of(false))
+      catchError((error) => of(false))
     );
   }
 
   checkStore(): Observable<boolean> {
-    return this.store.select(fromStore.getAlbumsLoaded).pipe(
+    this.store.select(fromStore.selectAlbumsLoaded).subscribe((x) => console.log(x));
+    return this.store.select(fromStore.selectAlbumsLoaded).pipe(
+      tap(loaded => {
+        if (!loaded) {
+          this.store.dispatch(new fromStore.LoadAlbums());
+        }
+      }),
+      filter(loaded => loaded),
+      take(1)
+    );
+
+    /* return this.store.select(fromStore.getAlbumsLoaded).pipe(
       tap(loaded => {
         if (!loaded) {
           this.store.dispatch(new fromStore.LoadAlbumCollection());
@@ -29,6 +40,6 @@ export class AlbumsGuard implements CanActivate {
       }),
       filter(loaded => loaded),
       take(1)
-    );
+    ); */
   }
 }

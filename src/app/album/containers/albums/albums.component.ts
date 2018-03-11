@@ -2,8 +2,9 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
-import * as albumStore from '../../store';
-import * as albumAction from '../../store/actions';
+//import * as albumStore from '../../store';
+import { UpdateAlbumsSortOrder, UpdateAlbumsFilter } from '../../store/actions';
+import { AlbumsState } from '../../store/reducers/album.reducer';
 import * as albumSelector from '../../store/selectors';
 import * as fromRoot from '../../../store';
 
@@ -24,11 +25,13 @@ export class AlbumsComponent implements OnInit {
   };
   currentSortOrder: OrderBy;
   search = '';
-  constructor(private store: Store<albumStore.AlbumFeatureState>, private appStore: Store<fromRoot.ApplicationState>) {}
+  constructor(private store: Store<AlbumsState>, private appStore: Store<fromRoot.ApplicationState>) {}
 
   ngOnInit() {
     this.albums$ = this.store.select(albumSelector.getAlbumsByFilterAndSort);
-    //.subscribe((x) => console.log(x));
+    /* this.albums$.subscribe(
+      (x) => console.log(x)
+    ); */
     this.sortOrder$ = this.store.select(albumSelector.getSortParameters);
 
     this.sortOrder$.subscribe(state => {
@@ -41,27 +44,27 @@ export class AlbumsComponent implements OnInit {
   }
 
   selectOrderBy(order) {
-    const sortData: OrderBy = Object.assign({}, this.currentSortOrder);
-    sortData.displayName = this.displayOrder[order];
-    sortData.orderBy = order;
+    const orderBy: OrderBy = Object.assign({}, this.currentSortOrder);
+    orderBy.displayName = this.displayOrder[order];
+    orderBy.orderBy = order;
 
-    this.store.dispatch(new albumAction.UpdateAlbumsSortOrder(sortData));
-    this.onSearchChange();
+    this.store.dispatch(new UpdateAlbumsSortOrder({orderBy}));
+    //this.onSearchChange();
     return false;
   }
 
   changeSortOrder() {
-    const sortData: OrderBy = Object.assign({}, this.currentSortOrder);
-    sortData.direction = sortData.direction === 'ASC' ? 'DESC' : 'ASC';
-    this.store.dispatch(new albumAction.UpdateAlbumsSortOrder(sortData));
-    this.onSearchChange();
+    const orderBy: OrderBy = Object.assign({}, this.currentSortOrder);
+    orderBy.direction = orderBy.direction === 'ASC' ? 'DESC' : 'ASC';
+    this.store.dispatch(new UpdateAlbumsSortOrder({orderBy}));
+    //this.onSearchChange();
   }
 
   onSearchChange() {
-    const filter = new FilterBy({
+    const filterBy = new FilterBy({
       filter: this.search,
       filterOn: 'collectionName'
     });
-    this.store.dispatch(new albumAction.UpdateAlbumsFilter(filter));
+    this.store.dispatch(new UpdateAlbumsFilter({filterBy}));
   }
 }

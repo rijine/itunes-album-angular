@@ -15,22 +15,24 @@ import { Album } from '../models';
 
 @Injectable()
 export class AlbumExistsGuard implements CanActivate {
-  constructor(private store: Store<fromStore.AlbumFeatureState>) {}
+  constructor(private store: Store<fromStore.AlbumModuleState>) {}
 
   canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {
+    return of(true);
 
-    const collectionId = parseInt(route.params.collectionId, 10)
-    /*return this.checkStore().pipe(
-      switchMap(() => {
-        const collectionId = parseInt(route.params.collectionId, 10);
-        return this.hasAlbum(collectionId);
-      })
-    ); */
-    return this.hasAlbum(collectionId);
+    // const collectionId = parseInt(route.params.collectionId, 10)
+    // /*return this.checkStore().pipe(
+    //   switchMap(() => {
+    //     const collectionId = parseInt(route.params.collectionId, 10);
+    //     return this.hasAlbum(collectionId);
+    //   })
+    // ); */
+    // return this.hasAlbum(collectionId);
   }
 
   hasAlbum(collectionId: number): Observable<boolean> {
-    return this.store.select(fromStore.getSelectedAlbumExists).pipe(
+    return of(true);
+    /* return this.store.select(fromStore.getSelectedAlbumExists).pipe(
       //map((albumDetails: Album[]) => albumDetails && albumDetails.length > 0),
       tap((exists: boolean) => {
         if (!exists) {
@@ -39,7 +41,7 @@ export class AlbumExistsGuard implements CanActivate {
       }),
       filter(loaded => loaded),
       take(1)
-    );
+    ); */
   }
 
   /* checkStore(): Observable<boolean> {

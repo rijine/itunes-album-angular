@@ -3,14 +3,14 @@ import { Album, Status, OrderBy, FilterBy } from '../../models';
 
 export interface AlbumCollectionState {
   entities: { [id: number]: Album };
-  details: {[id: number]: Album[]};
+  details: { [id: number]: Album[] };
   status: Status;
   orderBy: OrderBy;
   filterBy: FilterBy;
   count: number;
 }
 
-export const initialState: AlbumCollectionState = {
+const initialState: AlbumCollectionState = {
   entities: {},
   details: {},
   status: new Status({ loading: false, loaded: false }),

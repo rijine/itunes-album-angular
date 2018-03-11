@@ -14,7 +14,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AlbumItemComponent implements OnInit {
-  @Input() album;
+  @Input() album = {};
   @Output() notify: EventEmitter<any> = new EventEmitter();
 
   constructor() {}
